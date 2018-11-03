@@ -37,10 +37,10 @@ public class PermissionsPluginManager {
             // use Groupmanager
             permissionPlugin = new GroupManagerHandler(plugin);
             plugin.debugMessage("Using GroupManager as permissions plugin");
-        } else if (isPluginAvailable("PermissionsBukkit")) {
-            // Use PermissionsBukkit
-            permissionPlugin = new PermissionsBukkitHandler(plugin);
-            plugin.debugMessage("Using PermissionsBukkit as permissions plugin");
+//        } else if (isPluginAvailable("PermissionsBukkit")) {
+//            // Use PermissionsBukkit
+//            permissionPlugin = new PermissionsBukkitHandler(plugin);
+//            plugin.debugMessage("Using PermissionsBukkit as permissions plugin");
         } else if (isPluginAvailable("PowerfulPerms")) {
             // Use PermissionsBukkit
             permissionPlugin = new PowerfulPermsHandler(plugin);
