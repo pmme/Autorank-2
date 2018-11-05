@@ -35,12 +35,12 @@ public class ViewCommand extends AutorankCommand {
             return true;
         }
 
-        if (args.length < 2) {
-            sender.sendMessage(Lang.INVALID_FORMAT.getConfigValue("/ar view <path name> or /ar view list"));
-            return true;
-        }
+//        if (args.length < 2) {
+//            sender.sendMessage(Lang.INVALID_FORMAT.getConfigValue("/ar view <path name> or /ar view list"));
+//            return true;
+//        }
 
-        String pathName;
+        String pathName = (args.length == 2) ? AutorankTools.getStringFromArgs(args, 1) : "";
 
         boolean isPlayer = false;
 
@@ -50,10 +50,9 @@ public class ViewCommand extends AutorankCommand {
         }
 
         // /ar view list (or a name of a path)
-        pathName = AutorankTools.getStringFromArgs(args, 1);
 
         // Get a list of possible paths that a player can take?
-        if (pathName.equals("list")) {
+        if (args.length == 1 || pathName.equals("list")) {
 
             final List<Path> paths = new ArrayList<>();
 
@@ -75,6 +74,7 @@ public class ViewCommand extends AutorankCommand {
 
             final String pathsString = AutorankTools.createStringFromList(paths);
             sender.sendMessage(ChatColor.WHITE + pathsString);
+            sender.sendMessage(ChatColor.GOLD + "To view the requirements of a specific path, use /ar view <path name>.");
             return true;
         } else {
             // Third argument is probably a name of a path
