@@ -121,21 +121,21 @@ public class ViewCommand extends AutorankCommand {
                 }
             }
 
-            List<AbstractResult> results = targetPath.getResults();
-
-            // Set messages depending on console or player
-            messages = plugin.getPlayerChecker().formatResultsToList(results);
-
-            sender.sendMessage(ChatColor.GREEN + "Results of path '" + ChatColor.GRAY + targetPath.getDisplayName()
-                    + ChatColor.GREEN + "':");
-
-            if (messages.isEmpty()) {
-                AutorankTools.sendColoredMessage(sender, "none");
-            } else {
-                for (final String message : messages) {
-                    AutorankTools.sendColoredMessage(sender, message);
-                }
-            }
+//            List<AbstractResult> results = targetPath.getResults();
+//
+//            // Set messages depending on console or player
+//            messages = plugin.getPlayerChecker().formatResultsToList(results);
+//
+//            sender.sendMessage(ChatColor.GREEN + "Results of path '" + ChatColor.GRAY + targetPath.getDisplayName()
+//                    + ChatColor.GREEN + "':");
+//
+//            if (messages.isEmpty()) {
+//                AutorankTools.sendColoredMessage(sender, "none");
+//            } else {
+//                for (final String message : messages) {
+//                    AutorankTools.sendColoredMessage(sender, message);
+//                }
+//            }
 
         }
         return true;
