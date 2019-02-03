@@ -12,9 +12,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The command delegator for the '/ar view' command.
@@ -89,9 +91,19 @@ public class ViewCommand extends AutorankCommand {
             }
 
             List<CompositeRequirement> prerequisites = targetPath.getPrerequisites();
+            List<CompositeRequirement> completedRequirements = null;
+            if(isPlayer) {
+                UUID uuid = ((Player)sender).getUniqueId();
+                if (plugin.getPathManager().hasActivePath(uuid, targetPath)) {
+                    plugin.getPlayerChecker().checkPlayer((Player)sender);
+                    completedRequirements = targetPath.getCompletedRequirements(uuid);
+                }
+            }
+            if(completedRequirements == null){
+                completedRequirements = new ArrayList<>();
+            }
 
-            List<String> messages = plugin.getPlayerChecker().formatRequirementsToList(prerequisites, new
-                    ArrayList<>());
+            List<String> messages = plugin.getPlayerChecker().formatRequirementsToList(prerequisites, completedRequirements);
 
             sender.sendMessage(ChatColor.GREEN + "Prerequisites of path '" + ChatColor.GRAY
                     + targetPath.getDisplayName() + ChatColor.GREEN + "':");
